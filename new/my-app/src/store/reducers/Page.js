@@ -3,6 +3,11 @@ const initial = {
     photos: []
 }
 
-export function pageReducer (state = initial){
-    return state;
+export function pageReducer (state = initial, action){
+    switch(action.type){
+        case 'SET_YEAR': return {...state, year: action.payload }
+        
+        default: return state
+    }
+    
 }
