@@ -8,18 +8,20 @@ export default class Page extends Component{
     }
 
     render(){
-        const { year, photos } = this.props
+        const { year, photos, isFetching} = this.props
 
         return (
-        <div>
-            <button onClick={this.onBtnClick}>2018</button>
-            <button onClick={this.onBtnClick}>2017</button>
-            <button onClick={this.onBtnClick}>2016</button>
-            <button onClick={this.onBtnClick}>2015</button>
-            <button onClick={this.onBtnClick}>2014</button>
-            <p>
-                У тебя {photos.length} фото за {year} год
-            </p>
+        <div className='ib page'>
+            <button className='btn' onClick={this.onBtnClick}>2017</button>
+            <button className='btn' onClick={this.onBtnClick}>2018</button>
+            <button className='btn' onClick={this.onBtnClick}>2016</button>
+            <button className='btn' onClick={this.onBtnClick}>2015</button>
+            <button className='btn' onClick={this.onBtnClick}>2014</button>
+            
+            <h3>{year} год</h3>
+            
+        { isFetching? <p> Загрузка ...</p>: <p>У тебя {photos.length} фото</p> }
+            
         </div>
         )
     }
@@ -28,5 +30,6 @@ export default class Page extends Component{
 Page.propTypes ={
     year: PropTypes.number.isRequired,
     photos: PropTypes.array.isRequired,
-    btnClicked: PropTypes.func.isRequired
+    btnClicked: PropTypes.func.isRequired,
+    isFetching: PropTypes.bool.isRequired
 }

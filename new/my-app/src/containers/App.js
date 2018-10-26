@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import User from '../components/User/User'
 import Page from '../components/Page/Page'
 
-import { setYear } from '../store/actions/PageActions'
+import { getPhotos } from '../store/actions/PageActions'
 
 
 class App extends Component {
@@ -14,12 +14,12 @@ class App extends Component {
     const {user, page, setYearAction} =  this.props;
     // console.log(this.props)
     return (
-      <div className="App">
+      <div className="app">
       <header className="App-header">
         <h1 className="App-title">Мой топ фото</h1>
       </header>
+        <Page photos={ page.photos } year={ page.year } btnClicked={setYearAction} isFetching={page.isFetching} />
         <User name={ user.name } />
-        <Page photos={ page.photos } year={ page.year } btnClicked={setYearAction} />
     </div>
     );
   }
@@ -34,7 +34,7 @@ const mapStateToProps = store =>{
 
 const mapDispatchToProps = dispatch => {
   return {
-    setYearAction: year => dispatch(setYear(year))
+    setYearAction: year => dispatch(getPhotos(year))
   }
 }
 
